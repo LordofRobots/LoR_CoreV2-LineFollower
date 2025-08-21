@@ -1,9 +1,29 @@
-/* Minimal Line Follower (ESP32) — T => 3s turnaround
- * - 3s startup hold
- * - 20 Hz non-blocking control
- * - Sensors active-high (true on black)
- * - ledcAttachChannel + ledcWrite(pin,duty)
- */
+// Lord of Robots - Minimal Line Follower - AUG 21 2025
+// ESP32 with NeoPixel LED Strip + 3 Digital Line Sensors + Tank Drive Motors
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//            --- Environment Setup Prerequisites and Important Notes: ---               //
+///////////////////////////////////////////////////////////////////////////////////////////
+// 1. Add the following custom URL to the Arduino IDE - File / Preferences / Additional Boards Manager URLs
+//  - https://dl.espressif.com/dl/package_esp32_index.json
+// 2. Install the following board in Board Manager:
+//  - "esp32" by Espressif Systems
+// 3. Install the following library using the Library Manager:
+//  - "Adafruit NeoPixel" (Latest version) by Adafruit
+// 4. If needed, Install USB Driver: CH340. Check Device manager for connection in COM ports
+//  - https://www.wch-ic.com/download/file?id=65
+// 5. Select Target Board:
+//  - USE "esp32 / ESP32 Dev Module"
+// 6. Select COM Port and Upload
+// 7. Line Follower System Behavior
+//  - 3 second startup delay (ICE BLUE blinking LEDs)
+//  - Green LEDs = Moving forward on line
+//  - Blue LEDs = Adjusting left
+//  - Yellow LEDs = Adjusting right
+//  - White LEDs = Performing turnaround (T detected)
+//  - Red LEDs (blinking) = Lost line
+//  - Purple LEDs (blinking) = Fallback / stop condition
+///////////////////////////////////////////////////////////////////////////////////////////
 
 #include <Adafruit_NeoPixel.h>
 
